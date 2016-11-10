@@ -56,12 +56,12 @@ sivann 的 BLE Remote Control 模組上面有5個按鍵，每個按鍵的點擊�
 
 
 <a name="Service & Characteristic UUID"></a>
-## 4. Service & Characteristic UUID  
+## 3. Service & Characteristic UUID  
 
 |        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                                                             |  Description               |  
 |--------------------------------------|------------------------------|---------------------|--------------------------------------------------------------------|----------------------------|  
-|  *Key Service (0xBB70)*              |  Key Data (R)                |  0xCC32             |  0x01 (UP), 0x02 (DOWN), 0x04 (SELECT), 0x08 (LEFT), 0x10 (RIGHT)  |  Key Status                |  
-|  *DIN Service (0xBB00)*              |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)                                                |  DIN Status                |  
-|  *AIN Service (0xBB10)*              |  AIN Data (R)                |  0xCC02             |  00:00 (mV)                                                        |  LSB:MSB                   |  
+|  **Key Service (0xBB70)**            |  Key Data (R)                |  0xCC32             |  0x01 (UP), 0x02 (DOWN), 0x04 (SELECT), 0x08 (LEFT), 0x10 (RIGHT)  |  Key Status                |  
+|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)                                                |  DIN Status                |  
+|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)                                                        |  LSB:MSB                   |  
 |                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)                                             |  Measurement               |  
 |                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)                                            |  Period = [Input * 10] ms  |  
