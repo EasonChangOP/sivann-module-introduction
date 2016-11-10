@@ -23,11 +23,11 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
  * 量測空氣塵埃(選擇性)  
 
 #### Spec  
- * 環境光度 (Ambient light ) ：0 – 128k lux
- * 大氣壓力：260 – 1260 hPa (海拔約1875 – 10100 m)
- * 溫度範圍：-40 – 120 °C
- * 溼度：0 – 100 %RH
- * 分貝計範圍：50–77 dB
+ * 環境光度 (Ambient light ) ：0 – 128k lux  
+ * 大氣壓力：260 – 1260 hPa (海拔約1875 – 10100 m)  
+ * 溫度範圍：-40 – 120 °C  
+ * 溼度：0 – 100 %RH  
+ * 分貝計範圍：50–77 dB  
 
 
 <a name="Hardware Overview"></a>
@@ -52,7 +52,7 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
 LPS25HB 的中斷，發生中斷的情況設定可參閱 Reference 的 LPS25HB  
 * UV_INT  
 Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132  
-* MIC 
+* MIC  
 麥克風 (SPW2430HR5H) 的電壓輸出  
 * PM2.5 (選擇性)  
   * Vo1  
@@ -62,7 +62,7 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 <a name="Usage"></a>
 ## 3. Usage  
 
-1. 連接 Micro USB以5V電源供應
+1. 連接 Micro USB以5V電源供應  
 
 
 <a name="Service & Characteristic UUID"></a>
@@ -70,15 +70,15 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 
 |        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description               |  
 |--------------------------------------|------------------------------|---------------------|--------------------------|----------------------------|  
-|  *Weather Service (0xBB80)*          |  Barometer Data (R)          |  0xCC11             |  00:00:00:00 (hPa)       |  LSB:00:00:MSB             |  
+|  **Weather Service (0xBB80)**        |  Barometer Data (R)          |  0xCC11             |  00:00:00:00 (hPa)       |  LSB:00:00:MSB             |  
 |                                      |  Temperature Data (R)        |  0xCC07             |  00:00 (°C)              |  LSB:MSB                   |  
 |                                      |  Humidity Data (R)           |  0xCC08             |  00:00 (%RH)             |  LSB:MSB                   |  
 |                                      |  Ambient Light Data (R)      |  0xCC05             |  00:00:00:00 (lux)       |  LSB:00:00:MSB             |  
 |                                      |  Mic Data (R)                |  0xCC1A             |  00 (dB)                 |                            |  
 |                                      |  Weather Conf. (R/W)         |  0xBB81             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
 |                                      |  Weather Peri. (R/W)         |  0xBB82             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
-|  *DIN Service (0xBB00)*              |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
-|  *AIN Service (0xBB10)*              |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
+|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
+|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
 |                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
 |                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
 
