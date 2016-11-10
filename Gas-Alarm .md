@@ -4,7 +4,7 @@
 ## Guide Content  
 
 1. [Introduction](#Introduction)  
-2. [Module Overview](#Specifications)  
+2. [Hardware Overview](#Hardware Overview)  
 3. [Usage](#Usage)  
 4. [Service & Characteristic UUID](#Service & Characteristic UUID)  
 5. [Reference](#Reference)  
@@ -27,7 +27,7 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
  * MQ2 預熱時間：48 hours  
 
 
-<a name="Module Overview"></a>
+<a name="Hardware Overview"></a>
 ## 2. Hardware Overview  
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
@@ -58,12 +58,12 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
 
 |        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description               |  
 |--------------------------------------|------------------------------|---------------------|--------------------------|----------------------------|  
-|  *Environmental Service (0xBB50)*    |  Gas Data (R)                |  0xCC04             |  00:00 (ppm)             |  LSB:MSB                   |  
+|  **Environmental Service (0xBB50)**  |  Gas Data (R)                |  0xCC04             |  00:00 (ppm)             |  LSB:MSB                   |  
 |                                      |  GasAlarm Conf. (R/W)        |  0xBB51             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
 |                                      |  GasAlarm Peri. (R/W)        |  0xBB52             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
-|  *Buzzer Service (0xBB60)*           |  Buzzer Data (R/W)           |  0xCC28             |  0x01 (ON), 0x00 (OFF)   |  Buzzer Status             |  
-|  *DIN Service (0xBB00)*              |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
-|  *AIN Service (0xBB10)*              |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
+|  **Buzzer Service (0xBB60)**         |  Buzzer Data (R/W)           |  0xCC28             |  0x01 (ON), 0x00 (OFF)   |  Buzzer Status             |  
+|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
+|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
 |                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
 |                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
 
@@ -73,4 +73,3 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
 
 [LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
 [MQ2 Datasheets](http://www.buyic.com.tw/datasheet/0113004018/data.rar "MQ2")  
-
