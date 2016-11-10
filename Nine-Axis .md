@@ -65,13 +65,13 @@ sivann的 BLE 9-Axis 模組有三軸數位的磁力感測器、三軸數位的�
 
 |        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description                     |  
 |--------------------------------------|------------------------------|---------------------|--------------------------|----------------------------------|  
-|  *9-Axis Service (0xBB20)*           |  Gyro Data (R)               |  0xCC24             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
+|  **9-Axis Service (0xBB20)**         |  Gyro Data (R)               |  0xCC24             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
 |                                      |  Accel Data (R)              |  0xCC0F             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
 |                                      |  Mag Data (R)                |  0xCC10             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
 |                                      |  9-Axis Conf. (R/W)          |  0xBB21             |  0x01 (ON), 0x00 (OFF)   |  Measurement                     |  
 |                                      |  9-Axis Peri. (R/W)          |  0xBB22             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms        |  
-|  *DIN Service (0xBB00)*              |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                      |  
-|  *AIN Service (0xBB10)*              |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                         |  
+|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                      |  
+|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                         |  
 |                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement                     |  
 |                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms        |  
 
@@ -81,5 +81,4 @@ sivann的 BLE 9-Axis 模組有三軸數位的磁力感測器、三軸數位的�
 
 [MAG3110 Datasheets](https://www.nxp.com/files/sensors/doc/data_sheet/MAG3110.pdf "MAG3110")  
 [LSM6DS3 Datasheets](http://www.st.com/content/ccc/resource/technical/document/datasheet/a3/f5/4f/ae/8e/44/41/d7/DM00133076.pdf/files/DM00133076.pdf/jcr:content/translations/en.DM00133076.pdf "LSM6DS3")  
-
 
