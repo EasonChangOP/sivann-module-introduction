@@ -68,20 +68,19 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID
 
-|        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description               |  
-|--------------------------------------|------------------------------|---------------------|--------------------------|----------------------------|  
-|  **Weather Service (0xBB80)**        |  Barometer Data (R)          |  0xCC11             |  00:00:00:00 (hPa)       |  LSB:00:00:MSB             |  
-|                                      |  Temperature Data (R)        |  0xCC07             |  00:00 (°C)              |  LSB:MSB                   |  
-|                                      |  Humidity Data (R)           |  0xCC08             |  00:00 (%RH)             |  LSB:MSB                   |  
-|                                      |  Ambient Light Data (R)      |  0xCC05             |  00:00:00:00 (lux)       |  LSB:00:00:MSB             |  
-|                                      |  Mic Data (R)                |  0xCC1A             |  00 (dB)                 |                            |  
-|                                      |  Weather Conf. (R/W)         |  0xBB81             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
-|                                      |  Weather Peri. (R/W)         |  0xBB82             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
-|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
-|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
-|                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
-|                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
-
+|  Service Name         |  Service ID  |  Characteristic ID  |  Description         |  Access Type  |  note                                    |  
+|-----------------------|--------------|---------------------|----------------------|---------------|------------------------------------------|  
+|  **Weather Service**  |   0xBB80     |  0xCC11             |  Barometer Data      |  R            |  Unit : hPa                              |  
+|                       |              |  0xCC07             |  Temperature Data    |  R            |  Unit : °C                               |  
+|                       |              |  0xCC08             |  Humidity Data       |  R            |  Unit : %RH                              |  
+|                       |              |  0xCC05             |  Ambient Light Data  |  R            |  Unit : lux                              |  
+|                       |              |  0xCC1A             |  Mic Data            |  R            |  Unit : dB                               |  
+|                       |              |  0xBB81             |  Weather Conf.       |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                       |              |  0xBB82             |  Weather Peri.       |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+|  **DIN Service**      |   0xBB00     |  0xCC00             |  DIN Data            |  R            |  0x01 (H), 0x00 (L)                      |  
+|  **AIN Service**      |   0xBB10     |  0xCC02             |  AIN Data            |  R            |  Unit : mV                               |  
+|                       |              |  0xBB11             |  AIN Conf.           |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                       |              |  0xBB12             |  AIN Peri.           |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
 
 <a name="Reference"></a>
 ## 5. Reference   
