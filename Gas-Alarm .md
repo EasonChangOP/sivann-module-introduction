@@ -56,16 +56,16 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
-|        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description               |  
-|--------------------------------------|------------------------------|---------------------|--------------------------|----------------------------|  
-|  **Environmental Service (0xBB50)**  |  Gas Data (R)                |  0xCC04             |  00:00 (ppm)             |  LSB:MSB                   |  
-|                                      |  GasAlarm Conf. (R/W)        |  0xBB51             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
-|                                      |  GasAlarm Peri. (R/W)        |  0xBB52             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
-|  **Buzzer Service (0xBB60)**         |  Buzzer Data (R/W)           |  0xCC28             |  0x01 (ON), 0x00 (OFF)   |  Buzzer Status             |  
-|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
-|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
-|                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
-|                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
+|  Service Name                |  Service ID  |  Characteristic ID  |  Description     |  Access Type  |  note                                    |  
+|------------------------------|--------------|---------------------|------------------|---------------|------------------------------------------|  
+|  **Environmental Service**   |   0xBB50     |  0xCC04             |  Gas Data        |  R            |  Unit : ppm                              |  
+|                              |              |  0xBB51             |  GasAlarm Conf.  |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                              |              |  0xBB52             |  GasAlarm Peri.  |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+|  **Buzzer Service**          |   0xBB60     |  0xCC28             |  Buzzer Data     |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|  **DIN Service**             |   0xBB00     |  0xCC00             |  DIN Data        |  R            |  0x01 (H), 0x00 (L)                      |  
+|  **AIN Service**             |   0xBB10     |  0xCC02             |  AIN Data        |  R            |  Unit : mV                               |  
+|                              |              |  0xBB11             |  AIN Conf.       |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                              |              |  0xBB12             |  AIN Peri.       |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
 
 
 <a name="Reference"></a>
