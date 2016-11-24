@@ -56,7 +56,7 @@ sivann 的 BLE Remote Control 模組上面有5個按鍵，每個按鍵的點擊�
 
 
 <a name="Service & Characteristic UUID"></a>
-## 3. Service & Characteristic UUID  
+## 4. Service & Characteristic UUID  
 
 |  Service Name     |  Service ID  |  Characteristic ID  |  Description     |  Access Type  |  note                                                              |  
 |-------------------|--------------|---------------------|------------------|---------------|--------------------------------------------------------------------|  
