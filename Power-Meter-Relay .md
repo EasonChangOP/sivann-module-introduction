@@ -64,21 +64,22 @@ sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測�
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
-|        Service Name & ID               |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description               |  
-|----------------------------------------|------------------------------|---------------------|--------------------------|----------------------------|  
-|  **Power & Current Service (0xBB30)**  |  Power Data (R)              |  0xCC1E             |  00:00:00:00 (W)         |  LSB:00:00:MSB             |  
-|                                        |  Current Data (R)            |  0xCC13             |  00:00 (A)               |  LSB:MSB                   |  
-|                                        |  P & C Conf. (R/W)           |  0xBB31             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
-|                                        |  P & C Peri. (R/W)           |  0xBB32             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
-|  **Relay Service (0xBB40)**            |  Relay Data (R/W)            |  0xCC0E             |  0x01 (ON), 0x00 (OFF)   |  Relay State               |  
-|  **PIR Service (0xBB90)**              |  PIR Data (R/W)              |  0xCC06             |  0x01 (H), 0x00 (L)      |  PIR Status                |  
-|  **DIN Service (0xBB00)**              |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                |  
-|  **AIN Service (0xBB10)**              |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                   |  
-|                                        |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement               |  
-|                                        |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms  |  
+|        Service Name  |  Service ID  |  Characteristic ID  |  Description   |  Access Type  |  note                                    |  
+|----------------------|--------------|---------------------|----------------|---------------|------------------------------------------|  
+|  **Meter Service**   |   0xBB30     |  0xCC1E             |  Power Data    |  R            |  Unit : W                                |  
+|                      |              |  0xCC13             |  Current Data  |  R            |  Unit : A                                |  
+|                      |              |  0xBB31             |  P & C Conf.   |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                      |              |  0xBB32             |  P & C Peri.   |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+|  **Relay Service**   |   0xBB40     |  0xCC0E             |  Relay Data    |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|  **PIR Service**     |   0xBB90     |  0xCC06             |  PIR Data      |  R/W          |  0x01 (H), 0x00 (L)                      |  
+|  **DIN Service**     |   0xBB00     |  0xCC00             |  DIN Data      |  R            |  0x01 (H), 0x00 (L)                      |  
+|  **AIN Service**     |   0xBB10     |  0xCC02             |  AIN Data      |  R            |  Unit : mV                               |  
+|                      |              |  0xBB11             |  AIN Conf.     |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                      |              |  0xBB12             |  AIN Peri.     |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+
 
 
 <a name="Reference"></a>
 ## 5. Reference  
- 
+
 [ACS712 Datasheets](http://pdf1.alldatasheet.com/datasheet-pdf/view/168326/ALLEGRO/ACS712.html "ACS712")  
