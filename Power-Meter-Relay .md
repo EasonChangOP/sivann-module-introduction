@@ -64,7 +64,7 @@ sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測�
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
-|        Service Name  |  Service ID  |  Characteristic ID  |  Description   |  Access Type  |  note                                    |  
+|  Service Name        |  Service ID  |  Characteristic ID  |  Description   |  Access Type  |  note                                    |  
 |----------------------|--------------|---------------------|----------------|---------------|------------------------------------------|  
 |  **Meter Service**   |   0xBB30     |  0xCC1E             |  Power Data    |  R            |  Unit : W                                |  
 |                      |              |  0xCC13             |  Current Data  |  R            |  Unit : A                                |  
