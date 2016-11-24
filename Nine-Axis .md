@@ -63,17 +63,17 @@ sivann的 BLE 9-Axis 模組有三軸數位的磁力感測器、三軸數位的�
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
-|        Service Name & ID             |  Characteristic Description  |  Characteristic ID  |  Value                   |  Description                     |  
-|--------------------------------------|------------------------------|---------------------|--------------------------|----------------------------------|  
-|  **9-Axis Service (0xBB20)**         |  Gyro Data (R)               |  0xCC24             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
-|                                      |  Accel Data (R)              |  0xCC0F             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
-|                                      |  Mag Data (R)                |  0xCC10             |  00:00:00:00:00:00       |  X(L):X(M):Y(L):Y(M): Z(L):Z(M)  |  
-|                                      |  9-Axis Conf. (R/W)          |  0xBB21             |  0x01 (ON), 0x00 (OFF)   |  Measurement                     |  
-|                                      |  9-Axis Peri. (R/W)          |  0xBB22             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms        |  
-|  **DIN Service (0xBB00)**            |  DIN Data (R)                |  0xCC00             |  0x01 (H), 0x00 (L)      |  DIN Status                      |  
-|  **AIN Service (0xBB10)**            |  AIN Data (R)                |  0xCC02             |  00:00 (mV)              |  LSB:MSB                         |  
-|                                      |  AIN Conf. (R/W)             |  0xBB11             |  0x01 (ON), 0x00 (OFF)   |  Measurement                     |  
-|                                      |  AIN Peri. (R/W)             |  0xBB12             |  0x0A (10) ~ 0xFF (255)  |  Period = [Input * 10] ms        |  
+|  Service Name        |  Service ID  |  Characteristic ID  |  Description   |  Access Type  |  Note                                    |  
+|----------------------|--------------|---------------------|----------------|---------------|------------------------------------------|  
+|  **9-Axis Service**  |   0xBB20     |  0xCC24             |  Gyro Data     |  R            |  X, Y, Z axis, Unit : dps                |  
+|                      |              |  0xCC0F             |  Accel Data    |  R            |  X, Y, Z axis, Unit : mg                 |  
+|                      |              |  0xCC10             |  Mag Data      |  R            |  X, Y, Z axis, Unit : uT                 |  
+|                      |              |  0xBB21             |  9-Axis Conf.  |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                      |              |  0xBB22             |  9-Axis Peri.  |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+|  **DIN Service**     |   0xBB00     |  0xCC00             |  DIN Data      |  R            |  0x01 (H), 0x00 (L)                      |  
+|  **AIN Service**     |   0xBB10     |  0xCC02             |  AIN Data      |  R            |  Unit : mV                               |  
+|                      |              |  0xBB11             |  AIN Conf.     |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
+|                      |              |  0xBB12             |  AIN Peri.     |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
 
 
 <a name="Reference"></a>
