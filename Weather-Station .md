@@ -68,13 +68,15 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID
 
-|  Service Name         |  Service ID  |  Characteristic ID  |  Description         |  Access Type  |  note                                    |  
+|  Service Name         |  Service ID  |  Characteristic ID  |  Description         |  Access Type  |  Note                                    |  
 |-----------------------|--------------|---------------------|----------------------|---------------|------------------------------------------|  
 |  **Weather Service**  |   0xBB80     |  0xCC11             |  Barometer Data      |  R            |  Unit : hPa                              |  
 |                       |              |  0xCC07             |  Temperature Data    |  R            |  Unit : °C                               |  
 |                       |              |  0xCC08             |  Humidity Data       |  R            |  Unit : %RH                              |  
-|                       |              |  0xCC05             |  Ambient Light Data  |  R            |  Unit : lux                              |  
-|                       |              |  0xCC1A             |  Mic Data            |  R            |  Unit : dB                               |  
+|                       |              |  0xCC05             |  UV Data             |  R            |  Unit : UV Index, Handle = 65            |  
+|                       |              |  0xCC05             |  Ambient Light Data  |  R            |  Unit : lux, Handle = 69                 |  
+|                       |              |  0xCC1A             |  Mic Data            |  R            |  Unit : dB-SBL                           |  
+|                       |              |  0xCC1B             |  PM Data             |  R            |  Unit : pcs/0.01cf                       |  
 |                       |              |  0xBB81             |  Weather Conf.       |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
 |                       |              |  0xBB82             |  Weather Peri.       |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
 |  **DIN Service**      |   0xBB00     |  0xCC00             |  DIN Data            |  R            |  0x01 (H), 0x00 (L)                      |  
