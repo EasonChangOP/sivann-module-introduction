@@ -56,18 +56,18 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
-|  Service Name                |  Service ID  |  Characteristic ID  |  Description         |  Access Type  |  Note                                                          |  
-|------------------------------|--------------|---------------------|----------------------|---------------|----------------------------------------------------------------|  
-|  **Environmental Service**   |   0xBB50     |  0xCC04             |  Gas Data            |  R            |  Unit : ppm                                                    |  
-|                              |              |  0xBB51             |  GasAlarm Conf.      |  R/W          |  0x01 (ON), 0x00 (OFF)                                         |  
-|                              |              |  0xBB52             |  GasAlarm Peri.      |  R/W          |  Range : 10~255, Period = [Input * 10] ms                      |  
-|                              |              |  0xBB53             |  GasAlarm Option     |  R/W          |  0x00 (Propane), 0x01 (Smoke), 0x02 (Methane), 0x03 (Ethanol)  |  
-|                              |              |  0xBB54             |  GasAlarm Threshold  |  R/W          |  Range : 10~10000, Gas Alarm Limition                          |  
-|  **Buzzer Service**          |   0xBB60     |  0xCC28             |  Buzzer Data         |  R/W          |  0x01 (ON), 0x00 (OFF)                                         |  
-|  **DIN Service**             |   0xBB00     |  0xCC00             |  DIN Data            |  R            |  0x01 (H), 0x00 (L)                                            |  
-|  **AIN Service**             |   0xBB10     |  0xCC02             |  AIN Data            |  R            |  Unit : mV                                                     |  
-|                              |              |  0xBB11             |  AIN Conf.           |  R/W          |  0x01 (ON), 0x00 (OFF)                                         |  
-|                              |              |  0xBB12             |  AIN Peri.           |  R/W          |  Range : 10~255, Period = [Input * 10] ms                      |  
+|  Service                 |  Service ID  |  Char. Name          |  Char. ID  |  Access Type  |  Uint  |  Description                                       |  
+|--------------------------|--------------|----------------------|------------|---------------|--------|----------------------------------------------------|  
+|  **Environmental**       |   0xBB50     |  Generic             |  0xCC04    |  R            |  ppm   |  Gas Data                                          |  
+|                          |              |  GasAlarm Conf.      |  0xBB51    |  R/W          |        |  1 (ON), 0 (OFF)                                   |  
+|                          |              |  GasAlarm Peri.      |  0xBB52    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
+|                          |              |  GasAlarm Option     |  0xBB53    |  R/W          |        |  0 (Propane), 1 (Smoke), 2 (Methane), 3 (Ethanol)  |  
+|                          |              |  GasAlarm Threshold  |  0xBB54    |  R/W          |        |  Range : 10~10000, Gas Alarm Limit                 |  
+|  **Buzzer **             |   0xBB60     |  Buzzer              |  0xCC28    |  R/W          |        |  Buzzer Data       1 (ON), 0 (OFF)                 |  
+|  **DIN **                |   0xBB00     |  DIN                 |  0xCC00    |  R            |        |  DIN Data          1 (H), 0 (L)                    |  
+|  **AIN **                |   0xBB10     |  AIN                 |  0xCC02    |  R            |  mV    |  AIN Data          Unit :                          |  
+|                          |              |  AIN Conf.           |  0xBB11    |  R/W          |        |  1 (ON), 0 (OFF)                                   |  
+|                          |              |  AIN Peri.           |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
 
 
 <a name="Reference"></a>
