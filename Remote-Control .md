@@ -61,13 +61,13 @@ sivann 的 BLE Remote Control 模組上面有5個按鍵，每個按鍵的點擊�
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name  |  Service ID  |  Char. Name           |  Char. ID  |  Access Type  |  Unit  |  Description                                              |  
-|----------------|--------------|-----------------------|------------|---------------|--------|-----------------------------------------------------------|  
-|  **Key**       |   0xBB70     |  Multistate Selector  |  0xCC32    |  R            |        |  1(UP), 2(DOWN), 4(SELECT), 8(LEFT), 16(RIGHT)            |  
-|  **DIN**       |   0xBB00     |  Digital Input        |  0xCC00    |  R            |        |  0(L), 1(H)                                               |  
-|  **AIN**       |   0xBB10     |  Analogue Input       |  0xCC02    |  R            |  mV    |                                                           |  
-|                |              |  AIN Conf.            |  0xBB11    |  R/W          |        |  aIn Measurment. 0(OFF), 1(ON)                            |  
-|                |              |  AIN Peri.            |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255             |  
+|  Service Name  |  Service ID  |  Char. Name           |  Char. ID  |  Access Type  |  Unit  |  Description                                         |  
+|----------------|--------------|-----------------------|------------|---------------|--------|------------------------------------------------------|  
+|  **Key**       |   0xBB70     |  Multistate Selector  |  0xCC32    |  R            |        |  1 (UP), 2 (DOWN), 4 (SELECT), 8 (LEFT), 16 (RIGHT)  |  
+|  **DIN**       |   0xBB00     |  Digital Input        |  0xCC00    |  R            |        |  0 (L), 1 (H)                                        |  
+|  **AIN**       |   0xBB10     |  Analogue Input       |  0xCC02    |  R            |  mV    |                                                      |  
+|                |              |  AIN Conf.            |  0xBB11    |  R/W          |        |  aIn Measurment. 0 (OFF), 1 (ON)                     |  
+|                |              |  AIN Peri.            |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255        |  
 
 <a name="Reference"></a>
 ## 5. Reference  
@@ -76,5 +76,4 @@ sivann 的 BLE Remote Control 模組上面有5個按鍵，每個按鍵的點擊�
 
 
 *  Plugin (ble-shepherd)  
-
    [Remote Control](https://github.com/bluetoother/bshep-plugin-sivann-remotecontrol/blob/master/index.js "Remote Control")  
