@@ -54,24 +54,35 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
 
 
 <a name="Service & Characteristic UUID"></a>
-## 4. Service & Characteristic UUID  
+## 4. Service & Characteristic UUID  
+
+下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
 |  Service                 |  Service ID  |  Char. Name          |  Char. ID  |  Access Type  |  Uint  |  Description                                       |  
 |--------------------------|--------------|----------------------|------------|---------------|--------|----------------------------------------------------|  
 |  **Environmental**       |   0xBB50     |  Generic             |  0xCC04    |  R            |  ppm   |  Gas Data                                          |  
-|                          |              |  GasAlarm Conf.      |  0xBB51    |  R/W          |        |  1 (ON), 0 (OFF)                                   |  
+|                          |              |  GasAlarm Conf.      |  0xBB51    |  R/W          |        |  1(ON), 0(OFF)                                     |  
 |                          |              |  GasAlarm Peri.      |  0xBB52    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
-|                          |              |  GasAlarm Option     |  0xBB53    |  R/W          |        |  0 (Propane), 1 (Smoke), 2 (Methane), 3 (Ethanol)  |  
-|                          |              |  GasAlarm Threshold  |  0xBB54    |  R/W          |        |  Range : 10~10000, Gas Alarm Limit                 |  
-|  **Buzzer **             |   0xBB60     |  Buzzer              |  0xCC28    |  R/W          |        |  Buzzer Data       1 (ON), 0 (OFF)                 |  
-|  **DIN **                |   0xBB00     |  DIN                 |  0xCC00    |  R            |        |  DIN Data          1 (H), 0 (L)                    |  
-|  **AIN **                |   0xBB10     |  AIN                 |  0xCC02    |  R            |  mV    |  AIN Data          Unit :                          |  
-|                          |              |  AIN Conf.           |  0xBB11    |  R/W          |        |  1 (ON), 0 (OFF)                                   |  
+|                          |              |  GasAlarm Option     |  0xBB53    |  R/W          |        |  0(Propane), 1(Smoke), 2(Methane), 3(Ethanol)      |  
+|                          |              |  GasAlarm Threshold  |  0xBB54    |  R/W          |        |  Gas Alarm Limit Range : 10~10000                  |  
+|  **Buzzer**              |   0xBB60     |  Buzzer              |  0xCC28    |  R/W          |        |  Buzzer Data; 1(ON), 0(OFF)                        |  
+|  **DIN**                 |   0xBB00     |  Digital Input       |  0xCC00    |  R            |        |  DIN Data; 1 (H), 0 (L)                            |  
+|  **AIN**                 |   0xBB10     |  Analogue Input      |  0xCC02    |  R            |  mV    |  AIN Data                                          |  
+|                          |              |  AIN Conf.           |  0xBB11    |  R/W          |        |  1(ON), 0(OFF)                                     |  
 |                          |              |  AIN Peri.           |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
 
 
 <a name="Reference"></a>
 ## 5. Reference  
 
+#### Sensor  
 [LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
 [MQ2 Datasheets](http://www.buyic.com.tw/datasheet/0113004018/data.rar "MQ2")  
+
+
+#### Sample Code(ble-shepherd)  
+
+
+#### Plugin (ble-shepherd)  
+
+[Gas Alarm](https://github.com/bluetoother/bshep-plugin-sivann-gassensor/blob/master/index.js "Gas Alarm")  
