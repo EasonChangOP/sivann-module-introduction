@@ -99,4 +99,4 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 * Sample Code(ble-shepherd)  
 
 * Plugin (ble-shepherd)  
-  [Gas Alarm](https://github.com/bluetoother/bshep-plugin-sivann-gassensor/blob/master/index.js "Gas Alarm")  
+  [Weather Station](https://github.com/bluetoother/bshep-plugin-sivann-weatherstation/blob/master/index.js "Weather Station")  
