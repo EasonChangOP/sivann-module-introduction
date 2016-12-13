@@ -58,7 +58,7 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用�
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service                 |  Service ID  |  Char. Name          |  Char. ID  |  Access Type  |  Uint  |  Description                                       |  
+|  Service Name            |  Service ID  |  Char. Name          |  Char. ID  |  Access Type  |  Uint  |  Description                                       |  
 |--------------------------|--------------|----------------------|------------|---------------|--------|----------------------------------------------------|  
 |  **Environmental**       |   0xBB50     |  Generic             |  0xCC04    |  R            |  ppm   |  Gas Data                                          |  
 |                          |              |  GasAlarm Conf.      |  0xBB51    |  R/W          |        |  1(ON), 0(OFF)                                     |  
