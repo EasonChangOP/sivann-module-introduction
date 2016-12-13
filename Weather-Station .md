@@ -68,27 +68,35 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID
 
-|  Service Name         |  Service ID  |  Characteristic ID  |  Description         |  Access Type  |  Note                                    |  
-|-----------------------|--------------|---------------------|----------------------|---------------|------------------------------------------|  
-|  **Weather Service**  |   0xBB80     |  0xCC11             |  Barometer Data      |  R            |  Unit : hPa                              |  
-|                       |              |  0xCC07             |  Temperature Data    |  R            |  Unit : °C                               |  
-|                       |              |  0xCC08             |  Humidity Data       |  R            |  Unit : %RH                              |  
-|                       |              |  0xCC05             |  UV Data             |  R            |  Unit : UV Index, Handle = 65            |  
-|                       |              |  0xCC05             |  Ambient Light Data  |  R            |  Unit : lux, Handle = 69                 |  
-|                       |              |  0xCC1A             |  Mic Data            |  R            |  Unit : dB-SBL                           |  
-|                       |              |  0xCC1B             |  PM Data             |  R            |  Unit : pcs/0.01cf                       |  
-|                       |              |  0xBB81             |  Weather Conf.       |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
-|                       |              |  0xBB82             |  Weather Peri.       |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
-|  **DIN Service**      |   0xBB00     |  0xCC00             |  DIN Data            |  R            |  0x01 (H), 0x00 (L)                      |  
-|  **AIN Service**      |   0xBB10     |  0xCC02             |  AIN Data            |  R            |  Unit : mV                               |  
-|                       |              |  0xBB11             |  AIN Conf.           |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
-|                       |              |  0xBB12             |  AIN Peri.           |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
+
+|  Service Name  |  Service ID  |   Char. Name     |  Char. ID  |  Access Type  |  Unit        |  Description                                   |  
+|----------------|--------------|------------------|------------|---------------|--------------|------------------------------------------------|  
+|  **Weather**   |   0xBB80     |  Barometer       |  0xCC11    |  R            |  hPa         |                                                |  
+|                |              |  Temperature     |  0xCC07    |  R            |  °C          |                                                |  
+|                |              |  Humidity        |  0xCC08    |  R            |  %RH         |                                                |  
+|                |              |  Illuminance     |  0xCC05    |  R            |  UV Index    |  UVI Data. Handle = 65                         |  
+|                |              |  Illuminance     |  0xCC05    |  R            |  lux         |  Lux Data. Handle = 69                         |  
+|                |              |  Loudness        |  0xCC1A    |  R            |  dB-SBL      |                                                |  
+|                |              |  Concentration   |  0xCC1B    |  R            |  pcs/0.01cf  |                                                |  
+|                |              |  Weather Conf.   |  0xBB81    |  R/W          |              |  Weather Station Measurment. 0 (OFF), 1 (ON)   |  
+|                |              |  Weather Peri.   |  0xBB82    |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255  |  
+|  **DIN**       |   0xBB00     |  Digital Input   |  0xCC00    |  R            |              |  0 (L), 1 (H)                                  |  
+|  **AIN**       |   0xBB10     |  Analogue Input  |  0xCC02    |  R            |  mV          |                                                |  
+|                |              |  AIN Conf.       |  0xBB11    |  R/W          |              |  aIn Measurment. 0 (OFF), 1 (ON)               |  
+|                |              |  AIN Peri.       |  0xBB12    |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255  |  
 
 <a name="Reference"></a>
 ## 5. Reference   
 
-[LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
-[Si1132 Datasheets](https://www.silabs.com/Support%20Documents/TechnicalDocs/Si1132.pdf "Si1132")  
-[SHT20 Datasheets](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/Humidity_Sensors/Sensirion_Humidity_Sensors_SHT20_Datasheet_V4.pdf "SHT20")  
-[SPW2430HR5H-B Datasheets](http://www.mouser.com/ds/2/218/-531228.pdf "SPW2430HR5H-B")  
-[LPS25HB Datasheets](http://www.st.com/content/ccc/resource/technical/document/datasheet/9a/4c/aa/72/1f/45/4e/24/DM00141379.pdf/files/DM00141379.pdf/jcr:content/translations/en.DM00141379.pdf "LPS25HB")  
+* Sensor  
+  [LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
+  [Si1132 Datasheets](https://www.silabs.com/Support%20Documents/TechnicalDocs/Si1132.pdf "Si1132")  
+  [SHT20 Datasheets](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/Humidity_Sensors/Sensirion_Humidity_Sensors_SHT20_Datasheet_V4.pdf "SHT20")  
+  [SPW2430HR5H-B Datasheets](http://www.mouser.com/ds/2/218/-531228.pdf "SPW2430HR5H-B")  
+  [LPS25HB Datasheets](http://www.st.com/content/ccc/resource/technical/document/datasheet/9a/4c/aa/72/1f/45/4e/24/DM00141379.pdf/files/DM00141379.pdf/jcr:content/translations/en.DM00141379.pdf "LPS25HB")  
+
+* Sample Code(ble-shepherd)  
+
+* Plugin (ble-shepherd)  
+  [Gas Alarm](https://github.com/bluetoother/bshep-plugin-sivann-gassensor/blob/master/index.js "Gas Alarm")  
