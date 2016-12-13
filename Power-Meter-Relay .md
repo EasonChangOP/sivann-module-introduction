@@ -66,18 +66,18 @@ sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測�
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name  |  Service ID  |  Char. Name       |  Char. ID  |  Access Type  |  Unit  |  Description                                   |  
-|----------------|--------------|-------------------|------------|---------------|--------|------------------------------------------------|  
-|  **Meter**     |   0xBB30     |  Power            |  0xCC1E    |  R            |  W     |                                                |  
-|                |              |  Current          |  0xCC13    |  R            |  A     |                                                |  
-|                |              |  P & C Conf.      |  0xBB31    |  R/W          |        |  Meter Measurment. 0(OFF), 1(ON)               |  
-|                |              |  P & C Peri.      |  0xBB32    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
-|  **Relay**     |   0xBB40     |  Power Control    |  0xCC0E    |  R/W          |        |  0(OFF), 1(ON)                                 |  
-|  **PIR**       |   0xBB90     |  Presence Sensor  |  0xCC06    |  R/W          |        |  0(L), 1(H)                                    |  
-|  **DIN**       |   0xBB00     |  Digital Input    |  0xCC00    |  R            |        |  0(L), 1(H)                                    |  
-|  **AIN**       |   0xBB10     |  Analogue Input   |  0xCC02    |  R            |  mV    |                                                |  
-|                |              |  AIN Conf.        |  0xBB11    |  R/W          |        |  aIn Measurment. 0(OFF), 1(ON)                 |  
-|                |              |  AIN Peri.        |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
+|  Service Name  |  Service ID  |  Char. Name       |  Char. ID  |  Access Type  |  Unit  |  Description                                     |  
+|----------------|--------------|-------------------|------------|---------------|--------|--------------------------------------------------|  
+|  **Meter**     |   0xBB30     |  Power            |  0xCC1E    |  R            |  W     |                                                  |  
+|                |              |  Current          |  0xCC13    |  R            |  A     |                                                  |  
+|                |              |  P & C Conf.      |  0xBB31    |  R/W          |        |  Meter Measurment. 0 (OFF), 1 (ON)               |  
+|                |              |  P & C Peri.      |  0xBB32    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255    |  
+|  **Relay**     |   0xBB40     |  Power Control    |  0xCC0E    |  R/W          |        |  0 (OFF), 1 (ON)                                 |  
+|  **PIR**       |   0xBB90     |  Presence Sensor  |  0xCC06    |  R/W          |        |  0 (L), 1 (H)                                    |  
+|  **DIN**       |   0xBB00     |  Digital Input    |  0xCC00    |  R            |        |  0 (L), 1 (H)                                    |  
+|  **AIN**       |   0xBB10     |  Analogue Input   |  0xCC02    |  R            |  mV    |                                                  |  
+|                |              |  AIN Conf.        |  0xBB11    |  R/W          |        |  aIn Measurment. 0 (OFF), 1 (ON)                 |  
+|                |              |  AIN Peri.        |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255    |  
 
 
 
