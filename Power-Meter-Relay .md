@@ -64,22 +64,30 @@ sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測�
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
-|  Service Name        |  Service ID  |  Characteristic ID  |  Description   |  Access Type  |  note                                    |  
-|----------------------|--------------|---------------------|----------------|---------------|------------------------------------------|  
-|  **Meter Service**   |   0xBB30     |  0xCC1E             |  Power Data    |  R            |  Unit : W                                |  
-|                      |              |  0xCC13             |  Current Data  |  R            |  Unit : A                                |  
-|                      |              |  0xBB31             |  P & C Conf.   |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
-|                      |              |  0xBB32             |  P & C Peri.   |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
-|  **Relay Service**   |   0xBB40     |  0xCC0E             |  Relay Data    |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
-|  **PIR Service**     |   0xBB90     |  0xCC06             |  PIR Data      |  R/W          |  0x01 (H), 0x00 (L)                      |  
-|  **DIN Service**     |   0xBB00     |  0xCC00             |  DIN Data      |  R            |  0x01 (H), 0x00 (L)                      |  
-|  **AIN Service**     |   0xBB10     |  0xCC02             |  AIN Data      |  R            |  Unit : mV                               |  
-|                      |              |  0xBB11             |  AIN Conf.     |  R/W          |  0x01 (ON), 0x00 (OFF)                   |  
-|                      |              |  0xBB12             |  AIN Peri.     |  R/W          |  Range 10~255, Period = [Input * 10] ms  |  
+下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
+
+|  Service Name  |  Service ID  |  Char. Name       |  Char. ID  |  Access Type  |  Unit  |  Description                                   |  
+|----------------|--------------|-------------------|------------|---------------|--------|------------------------------------------------|  
+|  **Meter**     |   0xBB30     |  Power            |  0xCC1E    |  R            |  W     |                                                |  
+|                |              |  Current          |  0xCC13    |  R            |  A     |                                                |  
+|                |              |  P & C Conf.      |  0xBB31    |  R/W          |        |  Meter Measurment. 0(OFF), 1(ON)               |  
+|                |              |  P & C Peri.      |  0xBB32    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
+|  **Relay**     |   0xBB40     |  Power Control    |  0xCC0E    |  R/W          |        |  0(OFF), 1(ON)                                 |  
+|  **PIR**       |   0xBB90     |  Presence Sensor  |  0xCC06    |  R/W          |        |  0(L), 1(H)                                    |  
+|  **DIN**       |   0xBB00     |  Digital Input    |  0xCC00    |  R            |        |  0(L), 1(H)                                    |  
+|  **AIN**       |   0xBB10     |  Analogue Input   |  0xCC02    |  R            |  mV    |                                                |  
+|                |              |  AIN Conf.        |  0xBB11    |  R/W          |        |  aIn Measurment. 0(OFF), 1(ON)                 |  
+|                |              |  AIN Peri.        |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
 
 
 
 <a name="Reference"></a>
 ## 5. Reference  
 
-[ACS712 Datasheets](http://pdf1.alldatasheet.com/datasheet-pdf/view/168326/ALLEGRO/ACS712.html "ACS712")  
+* Sensor  
+  [ACS712 Datasheets](http://pdf1.alldatasheet.com/datasheet-pdf/view/168326/ALLEGRO/ACS712.html "ACS712")  
+
+* Sample Code(ble-shepherd)  
+
+* Plugin (ble-shepherd)  
+  [Power Meter Relay](https://github.com/bluetoother/bshep-plugin-sivann-relay/blob/master/index.js "Power Meter Relay")  
