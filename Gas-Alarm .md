@@ -13,12 +13,13 @@
 <a name="Introduction"></a>
 ## 1. Introduction  
 
-sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用蜂鳴器，煙霧濃度數值及蜂鳴器的開關可透過低功號藍芽 BLE 模組以無線方式讀取及控制。MQ-2 感測器對於煙、甲烷、丙烷和乙醇等氣體有不同的敏感度，而其量測氣體的預設為煙霧。MQ-2 詳細資料可參考 Reference 章節。  
+sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用蜂鳴器，煙霧濃度數值及蜂鳴器的開關可透過低功號藍芽 BLE 模組以無線方式讀取及控制。MQ-2 感測器對於煙、甲烷、丙烷和乙醇等氣體有不同的敏感度，而其量測氣體的預設為煙霧。MQ-2 詳細資料請參閱 Reference 的連結。  
 
 #### Features  
  * 讀取煙霧濃度與其他可燃性氣體，單位 ppm  
  * 煙霧濃度超過 300ppm(可設置) 後會自動觸發 Buzzer，發出蜂鳴警報  
  * 透過 BLE 無線方式，可操作蜂鳴器開關、設置不同氣體種類的敏感度以及觸發蜂鳴器的濃度值  
+ * 資料格式符合 [BIPSO](https://github.com/bluetoother/bipso/wiki/BIPSO-Specification "BIPSO") 規範  
 
 #### Spec  
  * 模組工作電壓：5V  
@@ -26,12 +27,14 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用�
  * 模組可感測煙霧濃度範圍：300 - 10000ppm (300ppm 以下為估算值，其最低值為 100 ppm)  
  * MQ-2 預熱時間：48 hours  
 
+
 <a name="Hardware Overview"></a>
 ## 2. Hardware Overview  
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
 
 ![GasAlarm](http://i.imgur.com/hUozm7i.png "GasAlarm")  
+
 
 <a name="Usage"></a>
 ## 3. Usage  
@@ -43,6 +46,7 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用�
 1. 因全新的 MQ-2 內部有雜質，需加熱一段時間後，讀取的數值才會較準確，所以建議第一次使用新模組時，請上電後一段時間再使用。為了避免上述情況而導致
    蜂鳴器持續鳴響，內部設計須總上電時間須超過 10 分鐘(並非每次上電等要等 10 分鐘)，自動鳴響的功能才會啟動。  
 2. 每次重新啟動須預熱 15 秒，模組才會開始量測。  
+
 
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
