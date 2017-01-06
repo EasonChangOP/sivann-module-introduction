@@ -13,21 +13,22 @@
 <a name="Introduction"></a>
 ## 1. Introduction  
 
-sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲音以及空氣的塵埃 (選擇性，需自己購買 PM 2.5/PM10 加裝) 的感測器。模組上的光度感測器 (Si1132) 可量測紫外線 (UV) 、環境光 (Ambient light)，壓力感測器 (LPS25HB) 可量測大氣壓力，溫溼度感測器 (SHT20) 量測溫溼度而麥克風 (SPW2430HR5H) 量測聲音的響度，其相關的詳細資料在 Reference。  
+sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲音以及空氣的塵埃 (選擇性，需自己購買 PM 2.5/PM10 加裝) 的感測器，模組上感測器的數值皆透過低功號藍牙 BLE 無線方式傳出。光度感測器 (Si1132)、壓力感測器 (LPS25HB)、溫溼度感測器 (SHT20) 和麥克風 (SPW2430HR5H)，其相關的詳細資料請參閱 Reference 的連結。  
 
-#### Features  
- * 量測環境光度 (Ambient light)  
- * 量測大氣壓力  
+#### Features  
+ * 量測環境光度 (Ambient light) 和 UVI  
+ * 量測大氣壓力  
  * 量測溫度、溼度  
  * 量測聲音的變化  
- * 量測空氣塵埃(選擇性)  
+ * 量測空氣塵埃 (選擇性)  
+ * 資料格式符合 [BIPSO](https://github.com/bluetoother/bipso/wiki/BIPSO-Specification "BIPSO") 規範  
 
 #### Spec  
  * 環境光度 (Ambient light ) ：0 – 128k lux  
- * 大氣壓力：260 – 1260 hPa (海拔約1875 – 10100 m)  
+ * 大氣壓力：260 – 1260 hPa (海拔約 1875 – 10100 m)  
  * 溫度範圍：-40 – 120 °C  
  * 溼度：0 – 100 %RH  
- * 分貝計範圍：50–77 dB  
+ * 分貝計範圍：50 – 77 dB  
 
 
 <a name="Hardware Overview"></a>
@@ -35,34 +36,13 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
 
-![WeatherStation](http://i.imgur.com/edpElLAl.png "WeatherStation")  
-
-### Pinouts  
-![WeatherStation Top Module](http://i.imgur.com/5QK3wNmm.png "WeatherStation Top Module")  
-
-* Power Pins:  
-  * 5V – 5V的電源腳位。供電給 LM358 及 PM2.5/PM10 (選擇性)  
-  * Vcc (3.3V) – 3.3V 的電源腳位。供電給 SPW2430HR5H  
-  * Vdd (3.3V) – 3.3V 的電源腳位。供電給 LPS25HB、Si1132 以及 SHT20  
-  * GND – 5V、Vcc 及 Vdd 共同的地   
-* I2C Pins  
-  * SDA – I2C 的資料腳位  
-  * SCL – I2C 的時脈腳位  
-* P_INT  
-LPS25HB 的中斷，發生中斷的情況設定可參閱 Reference 的 LPS25HB  
-* UV_INT  
-Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132  
-* MIC  
-麥克風 (SPW2430HR5H) 的電壓輸出  
-* PM2.5 (選擇性)  
-  * Vo1  
-  * Vo2  
+![WeatherStation](http://i.imgur.com/YvZv45R.png "WeatherStation")  
 
 
 <a name="Usage"></a>
 ## 3. Usage  
 
-1. 連接 Micro USB以5V電源供應  
+1. 連接 Micro USB 以 5V 電源供應  
 
 
 <a name="Service & Characteristic UUID"></a>
@@ -70,33 +50,32 @@ Si1132 的中斷，發生中斷的情況設定可參閱 Reference 的 Si1132
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name  |  Service ID  |   Char. Name     |  Char. ID  |  Access Type  |  Unit        |  Description                                   |  
-|----------------|--------------|------------------|------------|---------------|--------------|------------------------------------------------|  
-|  **Weather**   |   0xBB80     |  Barometer       |  0xCC11    |  R            |  hPa         |                                                |  
-|                |              |  Temperature     |  0xCC07    |  R            |  °C          |                                                |  
-|                |              |  Humidity        |  0xCC08    |  R            |  %RH         |                                                |  
-|                |              |  Illuminance     |  0xCC05    |  R            |  UV Index    |  UVI Data. Handle = 65                         |  
-|                |              |  Illuminance     |  0xCC05    |  R            |  lux         |  Lux Data. Handle = 69                         |  
-|                |              |  Loudness        |  0xCC1A    |  R            |  dB-SBL      |                                                |  
-|                |              |  Concentration   |  0xCC1B    |  R            |  pcs/0.01cf  |                                                |  
-|                |              |  Weather Conf.   |  0xBB81    |  R/W          |              |  Weather Station Measurment. 0 (OFF), 1 (ON)   |  
-|                |              |  Weather Peri.   |  0xBB82    |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255  |  
-|  **DIN**       |   0xBB00     |  Digital Input   |  0xCC00    |  R            |              |  0 (L), 1 (H)                                  |  
-|  **AIN**       |   0xBB10     |  Analogue Input  |  0xCC02    |  R            |  mV          |                                                |  
-|                |              |  AIN Conf.       |  0xBB11    |  R/W          |              |  aIn Measurment. 0 (OFF), 1 (ON)               |  
-|                |              |  AIN Peri.       |  0xBB12    |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255  |  
+|  Service Name  |  Service ID  |   Char. Name     |  Char. ID (Handle ID\*)  |  Char. Value                                                       |  Access Type  |  Unit        |  Description                                         |  
+|----------------|--------------|------------------|--------------------------|--------------------------------------------------------------------|---------------|--------------|------------------------------------------------------|  
+|  **Weather**   |   0xBB80     |  Barometer       |  0xCC11                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  hPa         |                                                      |  
+|                |              |  Temperature     |  0xCC07                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  °C          |                                                      |  
+|                |              |  Humidity        |  0xCC08                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  %RH         |                                                      |  
+|                |              |  Illuminance     |  0xCC05 (65)             |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  UV Index    |  UVI Data.                                           |  
+|                |              |  Illuminance     |  0xCC05 (69)             |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  lux         |  Lux Data.                                           |  
+|                |              |  Loudness        |  0xCC1A                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  dB-SBL      |                                                      |  
+|                |              |  Concentration   |  0xCC1B                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  pcs/0.01cf  |                                                      |  
+|                |              |  Weather Conf.   |  0xBB81                  |  config(boolean)                                                   |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
+|                |              |  Weather Peri.   |  0xBB82                  |  period(uint8)                                                     |  R/W          |              |  Period = [Data * 10] ms, Data Range : 100~255       |  
+|  **DIN**       |   0xBB00     |  Digital Input   |  0xCC00                  |  id(uint8), flags(uint8), dInState(boolean)                        |  R            |              |  0 (Low), 1 (High)                                   |  
+|  **AIN**       |   0xBB10     |  Analogue Input  |  0xCC02                  |  id(uint8), flags(uint8), aInCurrValue(float), sensorType(string)  |  R            |  mV          |                                                      |  
+|                |              |  AIN Conf.       |  0xBB11                  |  config(boolean)                                                   |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
+|                |              |  AIN Peri.       |  0xBB12                  |  period(uint8)                                                     |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255        |  
+
+\* : Handle ID 是用來分辨有同樣的 Char. ID 的資料，可參考 Reference 的 Sample Code 是如何處理有相同 Char. ID 的情況。  
+
 
 <a name="Reference"></a>
 ## 5. Reference   
 
-* Sensor  
-  [LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
-  [Si1132 Datasheets](https://www.silabs.com/Support%20Documents/TechnicalDocs/Si1132.pdf "Si1132")  
-  [SHT20 Datasheets](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/Humidity_Sensors/Sensirion_Humidity_Sensors_SHT20_Datasheet_V4.pdf "SHT20")  
-  [SPW2430HR5H-B Datasheets](http://www.mouser.com/ds/2/218/-531228.pdf "SPW2430HR5H-B")  
-  [LPS25HB Datasheets](http://www.st.com/content/ccc/resource/technical/document/datasheet/9a/4c/aa/72/1f/45/4e/24/DM00141379.pdf/files/DM00141379.pdf/jcr:content/translations/en.DM00141379.pdf "LPS25HB")  
-
-* Sample Code(ble-shepherd)  
-
-* Plugin (ble-shepherd)  
-  [Weather Station](https://github.com/bluetoother/bshep-plugin-sivann-weatherstation/blob/master/index.js "Weather Station")  
+ * [LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
+ * [Si1132 Datasheets](https://www.silabs.com/Support%20Documents/TechnicalDocs/Si1132.pdf "Si1132")  
+ * [SHT20 Datasheets](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/Humidity_Sensors/Sensirion_Humidity_Sensors_SHT20_Datasheet_V4.pdf "SHT20")  
+ * [SPW2430HR5H-B Datasheets](http://www.mouser.com/ds/2/218/-531228.pdf "SPW2430HR5H-B")  
+ * [LPS25HB Datasheets](http://www.st.com/content/ccc/resource/technical/document/datasheet/9a/4c/aa/72/1f/45/4e/24/DM00141379.pdf/files/DM00141379.pdf/jcr:content/translations/en.DM00141379.pdf "LPS25HB")  
+ * [Sample Code(ble-shepherd)](https://github.com/sivann-tw/hiver-iot-kit-ble/blob/master/example/weatherStation.js "Weather Station Sample Code")
+ * [Plugin (ble-shepherd)](https://github.com/bluetoother/bshep-plugin-sivann-weatherstation/blob/master/index.js "Weather Station Plugin")  
