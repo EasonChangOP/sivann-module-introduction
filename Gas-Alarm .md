@@ -13,74 +13,59 @@
 <a name="Introduction"></a>
 ## 1. Introduction  
 
-sivann 的 BLE Gas Alarm 模組內建一組 MQ2 氣體感測器以及警報用蜂鳴器，煙霧濃度數值及蜂鳴器的開關皆可透過低功號藍芽 BLE 模組以無線方式讀取及控制。MQ2 元件本身對煙、甲烷、丙烷和乙醇等氣體有不同的敏感度，而 sivann 氣體感測器的讀取值的對照參數為煙霧。詳細資料可參考 Reference 章節。  
+sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用蜂鳴器，煙霧濃度數值及蜂鳴器的開關可透過低功號藍芽 BLE 模組以無線方式讀取及控制。MQ-2 感測器對於煙、甲烷、丙烷和乙醇等氣體有不同的敏感度，而其量測氣體的預設為煙霧。MQ-2 詳細資料可參考 Reference 章節。  
 
 #### Features  
  * 讀取煙霧濃度與其他可燃性氣體，單位 ppm  
- * 煙霧濃度超過 300ppm 後會自動觸發 Buzzer，發出蜂鳴警報  
- * 可透過 BLE 以無線方式控制，獨立操作蜂鳴器開關  
+ * 煙霧濃度超過 300ppm(可設置) 後會自動觸發 Buzzer，發出蜂鳴警報  
+ * 透過 BLE 無線方式，可操作蜂鳴器開關、設置不同氣體種類的敏感度以及觸發蜂鳴器的濃度值  
 
-#### Spec  
+#### Spec  
  * 模組工作電壓：5V  
  * 模組最大工作電流：240mA  
- * 模組可感測煙霧濃度範圍：300 - 2000ppm (300ppm 以下為估算值)  
- * MQ2 預熱時間：48 hours  
-
+ * 模組可感測煙霧濃度範圍：300 - 10000ppm (300ppm 以下為估算值，其最低值為 100 ppm)  
+ * MQ-2 預熱時間：48 hours  
 
 <a name="Hardware Overview"></a>
 ## 2. Hardware Overview  
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
 
-![GasAlarm](http://i.imgur.com/b48dpg1l.png "GasAlarm")  
-
-### Pinouts  
-![GasAlarm Top](http://i.imgur.com/AMoCMcBm.png "GasAlarm Top")  
-
-* Power Pins:  
-  * 5V –5V的電源腳位。供電給 MQ-2 使用  
-  * Vcc (3.3V) –3.3V 的電源腳位。供電給 Buzzer  
-  * GND – 模組地參考平面  
-* AO  
-  氣體濃度 (MQ-2) 的電壓輸出  
-* Alarm_EN  
-  控制 Buzzer 鳴叫  
+![GasAlarm](http://i.imgur.com/hUozm7i.png "GasAlarm")  
 
 <a name="Usage"></a>
 ## 3. Usage  
 
 1. 連接 Micro USB以5V電源供應  
-2. 待煙霧感測器 MQ2 預熱完畢後，可開始正常量測  
+2. 等待煙霧感測器 MQ-2 預熱完畢後，可開始正常量測  
 
+#### Note  
+1. 因全新的 MQ-2 內部有雜質，需加熱一段時間後，讀取的數值才會較準確，所以建議第一次使用新模組時，請上電後一段時間再使用。為了避免上述情況而導致
+   蜂鳴器持續鳴響，內部設計須總上電時間須超過 10 分鐘(並非每次上電等要等 10 分鐘)，自動鳴響的功能才會啟動。  
+2. 每次重新啟動須預熱 15 秒，模組才會開始量測。  
 
 <a name="Service & Characteristic UUID"></a>
 ## 4. Service & Characteristic UUID  
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name            |  Service ID  |  Char. Name          |  Char. ID  |  Access Type  |  Unit  |  Description                                       |  
-|--------------------------|--------------|----------------------|------------|---------------|--------|----------------------------------------------------|  
-|  **Environmental**       |   0xBB50     |  Generic             |  0xCC04    |  R            |  ppm   |  Gas Data                                          |  
-|                          |              |  GasAlarm Conf.      |  0xBB51    |  R/W          |        |  GasAlarm Measurment. 0 (OFF), 1 (ON)              |  
-|                          |              |  GasAlarm Peri.      |  0xBB52    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
-|                          |              |  GasAlarm Option     |  0xBB53    |  R/W          |        |  0 (Propane), 1 (Smoke), 2 (Methane), 3 (Ethanol)  |  
-|                          |              |  GasAlarm Threshold  |  0xBB54    |  R/W          |        |  Gas Alarm Limit Range : 10~10000                  |  
-|  **Buzzer**              |   0xBB60     |  Buzzer              |  0xCC28    |  R/W          |        |  0 (OFF), 1 (ON)                                   |  
-|  **DIN**                 |   0xBB00     |  Digital Input       |  0xCC00    |  R            |        |  0 (L), 1 (H)                                      |  
-|  **AIN**                 |   0xBB10     |  Analogue Input      |  0xCC02    |  R            |  mV    |                                                    |  
-|                          |              |  AIN Conf.           |  0xBB11    |  R/W          |        |  aIn Measurment. 0 (OFF), 1 (ON)                   |  
-|                          |              |  AIN Peri.           |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
+|  Service Name            |  Service ID  |  Char. Name          |  Char. ID  |  Char. Value                                                                     |  Access Type  |  Unit  |  Description                                       |  
+|--------------------------|--------------|----------------------|------------|----------------------------------------------------------------------------------|---------------|--------|----------------------------------------------------|  
+|  **Environmental**       |   0xBB50     |  Generic             |  0xCC04    |  id(uint8), flags(uint8), sensorValue(float), units(string), sensorType(string)  |  R            |  ppm   |  Gas Measurment Data                               |  
+|                          |              |  GasAlarm Conf.      |  0xBB51    |  config(boolean)                                                                 |  R/W          |        |  Measurment Switch. 0 (OFF), 1 (ON)                |  
+|                          |              |  GasAlarm Peri.      |  0xBB52    |  period(uint8)                                                                   |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
+|                          |              |  GasAlarm Option     |  0xBB53    |  option(uint8)                                                                   |  R/W          |        |  0 (Propane), 1 (Smoke), 2 (Methane), 3 (Ethanol)  |  
+|                          |              |  GasAlarm Threshold  |  0xBB54    |  threshold(uint16)                                                               |  R/W          |  ppm   |  Gas Alarm Limit Range : 100~10000 ppm             |  
+|  **Buzzer**              |   0xBB60     |  Buzzer              |  0xCC28    |  id(uint8), flags(uint8), onOff(boolean), minOffTime(float)                      |  R/W          |        |  0 (OFF), 1 (ON)                                   |  
+|  **DIN**                 |   0xBB00     |  Digital Input       |  0xCC00    |  id(uint8), flags(uint8), dInState(boolean)                                      |  R            |        |  0 (Low), 1 (High)                                 |  
+|  **AIN**                 |   0xBB10     |  Analogue Input      |  0xCC02    |  id(uint8), flags(uint8), aInCurrValue(float), sensorType(string)                |  R            |  mV    |                                                    |  
+|                          |              |  AIN Conf.           |  0xBB11    |  config(boolean)                                                                 |  R/W          |        |  Measurment Switch. 0 (OFF), 1 (ON)                |  
+|                          |              |  AIN Peri.           |  0xBB12    |  period(uint8)                                                                   |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255      |  
 
 
 <a name="Reference"></a>
 ## 5. Reference  
 
-* Sensor  
-  [LM358 Datasheets](http://www.ti.com/lit/ds/symlink/lm358.pdf "LM358")  
-  [MQ2 Datasheets](http://www.buyic.com.tw/datasheet/0113004018/data.rar "MQ2")  
-
-
-* Sample Code(ble-shepherd)  
-
-* Plugin (ble-shepherd)  
-  [Gas Alarm](https://github.com/bluetoother/bshep-plugin-sivann-gassensor/blob/master/index.js "Gas Alarm")  
+ * [MQ-2 Datasheets](http://www.buyic.com.tw/datasheet/0113004018/data.rar "MQ-2")  
+ * [Sample Code(ble-shepherd)](https://github.com/sivann-tw/hiver-iot-kit-ble/blob/master/example/gasAlarm.js "Gas Alarm Sample Code")  
+ * [Plugin (ble-shepherd)](https://github.com/bluetoother/bshep-plugin-sivann-gassensor/blob/master/index.js "Gas Alarm Plugin")  
