@@ -66,7 +66,7 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
 |                |              |  AIN Conf.       |  0xBB11                  |  config(boolean)                                                   |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
 |                |              |  AIN Peri.       |  0xBB12                  |  period(uint8)                                                     |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255        |  
 
-\* : Handle ID 是用來分辨有同樣的 Char. ID 的資料，可參考 Reference 的 Sample Code 是如何處理有相同 Char. ID 的情況。  
+\* : Handle ID 可用來分辨有同樣的 Char. ID 的資料。可參考 Reference 的 Sample Code 是如何處理有相同 Char. ID 的情況。  
 
 
 <a name="Reference"></a>
