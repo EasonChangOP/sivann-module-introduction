@@ -13,13 +13,13 @@
 <a name="Introduction"></a>
 ## 1. Introduction  
 
-sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測器，可以透過低功號藍牙 BLE 透過無線方式控制切換電器開關和讀取量測的電流值。電流感測器 (ACS712ELCTR-05B-T) 以及繼電器 (TRB1-05D) 的相關詳細資料在 Reference，請自行參閱。  
+sivann 的 BLE Power Meter Relay 模組有繼電器、電流感測器以及人體紅外線感測器 ( PIR，為選擇性)，可以透過低功號藍牙 BLE 無線方式控制切換電器開關、讀取量測的電流值和 PIR 變化。電流感測器 (ACS712ELCTR-05B-T) 的詳細資料請參閱 Reference 的連結。  
 
 #### Features  
  * 量測 AC/DC 電流，電流值最大不超過 3A  
  * 控制繼電器 NC/NO  
- * 綠色LED提示繼電器切換至 NO  
- * 支援 2.4GHz BLE 4.0，並符合 BIPSO 規範  
+ * 綠色 LED 提示繼電器切換至 NO  
+ * 資料格式符合 [BIPSO](https://github.com/bluetoother/bipso/wiki/BIPSO-Specification "BIPSO") 規範  
 
 #### Spec  
  * 模組工作電壓: 5V  
@@ -34,31 +34,14 @@ sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測�
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
 
-![Smart Power Relay](http://i.imgur.com/P35N7FNl.png "Smart Power Relay")  
-
-#### Pinouts  
-
-![Smart Power Relay Top Module](http://i.imgur.com/GWADze7m.png "Smart Power Relay Top Module")  
-
-* Power Pins:  
-  * 5V – 5V 的電源腳位。供電給繼電器及 ACS712 使用  
-  * Vcc (3.3V) – 3.3V 的電源腳位。供電給光耦合器  
-  * GND – 模組地參考平面   
-* AO  
-  讀取 ACS712 的電流量測資訊  
-* DIN  
-  控制繼電器 NO/NC ，繼電器的 NO/NC 對應於 DIN 的電壓 0V/3.3V  
-* 5VCal  
-  參考電壓，數值為 5V 的一半  
-* PIR (optional)  
-  讀取 PIR 人體紅外線感測器的觸發狀態 (0V/3.3V)。這是選擇性的腳位，使用者可以藉由此腳位來讀取觸發狀態，並與其它應用做結合  
+![Smart Power Relay](http://i.imgur.com/HtcpIQ0.png "Smart Power Relay")  
 
 
 <a name="Usage"></a>
 ## 3. Usage  
 
-1. 連接 Micro USB 以 5V 電源供應  
-2. 連接電器，如下圖所示  
+1. 連接電器  
+2. 連接 Micro USB 以 5V 電源供應  
 
 
 <a name="Service & Characteristic UUID"></a>
@@ -66,28 +49,23 @@ sivann 的 BLE Power Meter Relay 模組有繼電器當開關以及電流感測�
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name  |  Service ID  |  Char. Name       |  Char. ID  |  Access Type  |  Unit  |  Description                                   |  
-|----------------|--------------|-------------------|------------|---------------|--------|------------------------------------------------|  
-|  **Metering**  |   0xBB30     |  Power            |  0xCC1E    |  R            |  W     |                                                |  
-|                |              |  Current          |  0xCC13    |  R            |  A     |                                                |  
-|                |              |  Metering Conf.   |  0xBB31    |  R/W          |        |  Measurment Switch. 0 (OFF), 1 (ON)            |  
-|                |              |  Metering Peri.   |  0xBB32    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
-|  **Relay**     |   0xBB40     |  Power Control    |  0xCC0E    |  R/W          |        |  0 (NC), 1 (NO)                                |  
-|  **PIR**       |   0xBB90     |  Presence Sensor  |  0xCC06    |  R/W          |        |  0 (Low), 1 (High)                             |  
-|  **DIN**       |   0xBB00     |  Digital Input    |  0xCC00    |  R            |        |  0 (Low), 1 (High)                             |  
-|  **AIN**       |   0xBB10     |  Analogue Input   |  0xCC02    |  R            |  mV    |                                                |  
-|                |              |  AIN Conf.        |  0xBB11    |  R/W          |        |  Measurment Switch. 0 (OFF), 1 (ON)            |  
-|                |              |  AIN Peri.        |  0xBB12    |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
-
+|  Service Name  |  Service ID  |  Char. Name       |  Char. ID  |  Char. Value                                                       |  Access Type  |  Unit  |  Description                                   |  
+|----------------|--------------|-------------------|------------|--------------------------------------------------------------------|---------------|--------|------------------------------------------------|  
+|  **Metering**  |   0xBB30     |  Power            |  0xCC1E    |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  W     |                                                |  
+|                |              |  Current          |  0xCC13    |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  A     |                                                |  
+|                |              |  Metering Conf.   |  0xBB31    |  config(boolean)                                                   |  R/W          |        |  Measurment Switch. 0 (OFF), 1 (ON)            |  
+|                |              |  Metering Peri.   |  0xBB32    |  period(uint8)                                                     |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
+|  **Relay**     |   0xBB40     |  Power Control    |  0xCC0E    |  id(uint8), flags(uint8), onOff(boolean)                           |  R/W          |        |  0 (NC), 1 (NO)                                |  
+|  **PIR**       |   0xBB90     |  Presence Sensor  |  0xCC06    |  id(uint8), flags(uint8), dInState(boolean), sensorType(string)    |  R/W          |        |  0 (Low), 1 (High)                             |  
+|  **DIN**       |   0xBB00     |  Digital Input    |  0xCC00    |  id(uint8), flags(uint8), dInState(boolean)                        |  R            |        |  0 (Low), 1 (High)                             |  
+|  **AIN**       |   0xBB10     |  Analogue Input   |  0xCC02    |  id(uint8), flags(uint8), aInCurrValue(float), sensorType(string)  |  R            |  mV    |                                                |  
+|                |              |  AIN Conf.        |  0xBB11    |  config(boolean)                                                   |  R/W          |        |  Measurment Switch. 0 (OFF), 1 (ON)            |  
+|                |              |  AIN Peri.        |  0xBB12    |  period(uint8)                                                     |  R/W          |        |  Period = [Data * 10] ms, Data Range : 10~255  |  
 
 
 <a name="Reference"></a>
 ## 5. Reference  
 
-* Sensor  
-  [ACS712 Datasheets](http://pdf1.alldatasheet.com/datasheet-pdf/view/168326/ALLEGRO/ACS712.html "ACS712")  
-
-* Sample Code(ble-shepherd)  
-
-* Plugin (ble-shepherd)  
-  [Power Meter Relay](https://github.com/bluetoother/bshep-plugin-sivann-relay/blob/master/index.js "Power Meter Relay")  
+ * [ACS712 Datasheets](http://pdf1.alldatasheet.com/datasheet-pdf/view/168326/ALLEGRO/ACS712.html "ACS712")  
+ * [Sample Code(ble-shepherd)](https://github.com/sivann-tw/hiver-iot-kit-ble/blob/master/example/powerMeterRelay.js "Power Meter Relay Sample Code")  
+ * [Plugin (ble-shepherd)](https://github.com/bluetoother/bshep-plugin-sivann-relay/blob/master/index.js "Power Meter Relay Plugin")  
