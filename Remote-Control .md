@@ -37,8 +37,8 @@ sivann 的 BLE Remote Control 模組上面有 5 個按鍵，每個按鍵的點�
 <a name="Usage"></a>
 ## 3. Usage  
 
-1. 如下圖所示，於模組背面金屬凹槽處置入 CR2032 水銀電池供電，請注意金屬殼為正極  
-![Battery](http://i.imgur.com/N79YOCmm.png "Battery")  
+1. 如下圖所示，於模組背面金屬凹槽處置入 CR2032 水銀電池供電，請注意**金屬殼為正極** 
+![Battery](http://i.imgur.com/gyhdymo.png "Battery")  
 
 2. 點擊任意按鍵，綠色 LED 開始閃爍，模組發出 BLE 廣播加入網路  
 
