@@ -20,17 +20,16 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
  * 量測大氣壓力  
  * 量測溫度、溼度  
  * 量測聲音的變化  
- * 量測空氣塵埃 (選擇性)  
+ * 量測空氣塵埃 (Optional。連接 Grove Dust Sensor - DSM501A)  
  * 資料格式符合 [BIPSO](https://github.com/bluetoother/bipso/wiki/BIPSO-Specification "BIPSO") 規範  
 
 #### Spec  
  * 環境光度 (Ambient light ) ：0 – 128k lux  
  * 大氣壓力：260 – 1260 hPa (海拔約 1875 – 10100 m)  
- * 溫度範圍：-40 – 120 °C  
- * 溼度：0 – 100 %RH  
- * 分貝計範圍：50 – 77 dB  
-
-
+ * 分貝計範圍：35 – 80 dB  
+ * 透過 SHT20 量測溫度和濕度  
+ 
+ 
 <a name="Hardware Overview"></a>
 ## 2. Hardware Overview  
 
@@ -43,6 +42,7 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
 ## 3. Usage  
 
 1. 連接 Micro USB 以 5V 電源供應  
+2. Optional - 可連接 Grove Dust Sensor  
 
 
 <a name="Service & Characteristic UUID"></a>
@@ -50,21 +50,21 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name  |  Service ID  |   Char. Name     |  Char. ID (Handle ID\*)  |  Char. Value                                                       |  Access Type  |  Unit        |  Description                                         |  
-|----------------|--------------|------------------|--------------------------|--------------------------------------------------------------------|---------------|--------------|------------------------------------------------------|  
-|  **Weather**   |   0xBB80     |  Barometer       |  0xCC11                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  hPa         |                                                      |  
-|                |              |  Temperature     |  0xCC07                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  °C          |                                                      |  
-|                |              |  Humidity        |  0xCC08                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  %RH         |                                                      |  
-|                |              |  Illuminance     |  0xCC05 (65)             |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  UV Index    |  UVI Data.                                           |  
-|                |              |  Illuminance     |  0xCC05 (69)             |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  lux         |  Lux Data.                                           |  
-|                |              |  Loudness        |  0xCC1A                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  dB-SBL      |                                                      |  
-|                |              |  Concentration   |  0xCC1B                  |  id(uint8), flags(uint8), sensorValue(float), units(string)        |  R            |  pcs/0.01cf  |                                                      |  
-|                |              |  Weather Conf.   |  0xBB81                  |  config(boolean)                                                   |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
-|                |              |  Weather Peri.   |  0xBB82                  |  period(uint8)                                                     |  R/W          |              |  Period = [Data * 10] ms, Data Range : 100~255       |  
-|  **DIN**       |   0xBB00     |  Digital Input   |  0xCC00                  |  id(uint8), flags(uint8), dInState(boolean)                        |  R            |              |  0 (Low), 1 (High)                                   |  
-|  **AIN**       |   0xBB10     |  Analogue Input  |  0xCC02                  |  id(uint8), flags(uint8), aInCurrValue(float), sensorType(string)  |  R            |  mV          |                                                      |  
-|                |              |  AIN Conf.       |  0xBB11                  |  config(boolean)                                                   |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
-|                |              |  AIN Peri.       |  0xBB12                  |  period(uint8)                                                     |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255        |  
+|  Service Name  |  Service ID  |   Char. Name     |  Char. ID (Handle ID\*)  |  Possible Fields in Char. Value                                        |  Access Type  |  Unit        |  Description                                         |  
+|----------------|--------------|------------------|--------------------------|------------------------------------------------------------------------|---------------|--------------|------------------------------------------------------|  
+|  **Weather**   |   0xBB80     |  Barometer       |  0xCC11                  |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  hPa         |                                                      |  
+|                |              |  Temperature     |  0xCC07                  |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  °C          |                                                      |  
+|                |              |  Humidity        |  0xCC08                  |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  %RH         |                                                      |  
+|                |              |  Illuminance     |  0xCC05 (65)             |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  UV Index    |  UVI Data.                                           |  
+|                |              |  Illuminance     |  0xCC05 (69)             |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  lux         |  Lux Data.                                           |  
+|                |              |  Loudness        |  0xCC1A                  |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  dB-SBL      |                                                      |  
+|                |              |  Concentration   |  0xCC1B                  |  id (uint8), flags (uint8), sensorValue (float), units (string)        |  R            |  pcs/0.01cf  |                                                      |  
+|                |              |  Weather Conf.   |  0xBB81                  |  config (boolean)                                                      |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
+|                |              |  Weather Peri.   |  0xBB82                  |  period (uint8)                                                        |  R/W          |              |  Period = [Data * 10] ms, Data Range : 100~255       |  
+|  **DIN**       |   0xBB00     |  Digital Input   |  0xCC00                  |  id (uint8), flags (uint8), dInState (boolean)                         |  R            |              |  0 (Low), 1 (High)                                   |  
+|  **AIN**       |   0xBB10     |  Analogue Input  |  0xCC02                  |  id (uint8), flags (uint8), aInCurrValue (float), sensorType (string)  |  R            |  mV          |                                                      |  
+|                |              |  AIN Conf.       |  0xBB11                  |  config (boolean)                                                      |  R/W          |              |  Measurment Switch. 0 (OFF), 1 (ON)                  |  
+|                |              |  AIN Peri.       |  0xBB12                  |  period (uint8)                                                        |  R/W          |              |  Period = [Data * 10] ms, Data Range : 10~255        |  
 
 \* : Handle ID 可用來分辨有同樣的 Char. ID 的資料。可參考 Reference 的 Sample Code 是如何處理有相同 Char. ID 的情況。  
 
