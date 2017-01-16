@@ -48,9 +48,9 @@ sivann 的 BLE Remote Control 模組上面有 5 個按鍵，每個按鍵的點�
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
 
-|  Service Name  |  Service ID  |  Char. Name           |  Char. ID  |  Char. Value                               |  Access Type  |  Unit  |  Description                                         |  
-|----------------|--------------|-----------------------|------------|--------------------------------------------|---------------|--------|------------------------------------------------------|  
-|  **Key**       |   0xBB70     |  Multistate Selector  |  0xCC32    |  id(uint8), flags(uint8), mStateIn(uint8)  |  R            |        |  1 (UP), 2 (DOWN), 4 (SELECT), 8 (LEFT), 16 (RIGHT)  |  
+|  Service Name  |  Service ID  |  Char. Name           |  Char. ID  |  Possible Fields in Char. Value               |  Access Type  |  Unit  |  Description                                         |  
+|----------------|--------------|-----------------------|------------|-----------------------------------------------|---------------|--------|------------------------------------------------------|  
+|  **Key**       |   0xBB70     |  Multistate Selector  |  0xCC32    |  id (uint8), flags (uint8), mStateIn (uint8)  |  R            |        |  1 (UP), 2 (DOWN), 4 (SELECT), 8 (LEFT), 16 (RIGHT)  |  
 
 
 <a name="Reference"></a>
