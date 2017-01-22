@@ -23,7 +23,7 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用�
 
 #### Spec  
  * 模組工作電壓：5V  
- * 模組最大工作電流：240mA  
+ * 模組最大工作電流：240mA  
  * 模組可感測煙霧濃度範圍：300 - 10000ppm (300ppm 以下為估算值，其最低值為 100 ppm)  
  * MQ-2 預熱時間：48 hours  
 
@@ -39,12 +39,13 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用�
 <a name="Usage"></a>
 ## 3. Usage  
 
-1. 連接 Micro USB以5V電源供應  
+1. 連接 Micro USB 以 5V 電源供應  
 2. 等待煙霧感測器 MQ-2 預熱完畢後，可開始正常量測  
 
 #### Note  
 1. 自動警報功能需預熱 10 分鐘後 (一次性)，才會自動啟用。  
 2. 每次重新啟動須預熱 15 秒，模組才會開始量測。  
+3. MQ-2 感測器的特性需預熱一段時間，數值才較準確。  
 
 
 <a name="Service & Characteristic UUID"></a>
