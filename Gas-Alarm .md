@@ -4,9 +4,9 @@
 ## Guide Content  
 
 1. [Introduction](#Introduction)  
-2. [Hardware Overview](#Hardware Overview)  
+2. [Hardware Overview](#Hardware_Overview)  
 3. [Usage](#Usage)  
-4. [Service & Characteristic UUID](#Service & Characteristic UUID)  
+4. [Service & Characteristic UUID](#Service_&_Characteristic_UUID)  
 5. [Reference](#Reference)  
 
 
@@ -28,7 +28,7 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用�
  * MQ-2 預熱時間：48 hours  
 
 
-<a name="Hardware Overview"></a>
+<a name="Hardware_Overview"></a>
 ## 2. Hardware Overview  
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
@@ -48,7 +48,7 @@ sivann 的 BLE Gas Alarm 模組內建一組 MQ-2 氣體感測器以及警報用�
 3. MQ-2 感測器的特性需預熱一段時間，數值才較準確。  
 
 
-<a name="Service & Characteristic UUID"></a>
+<a name="Service_&_Characteristic_UUID"></a>
 ## 4. Service & Characteristic UUID  
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
