@@ -4,9 +4,9 @@
 ## Guide Content  
 
 1. [Introduction](#Introduction)  
-2. [Hardware Overview](#Hardware Overview)  
+2. [Hardware Overview](#Hardware_Overview)  
 3. [Usage](#Usage)  
-4. [Service & Characteristic UUID](#Service & Characteristic UUID)  
+4. [Service & Characteristic UUID](#Service_&_Characteristic_UUID)  
 5. [Reference](#Reference)  
 
 
@@ -30,7 +30,7 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
  * 透過 SHT20 量測溫度和濕度  
  
  
-<a name="Hardware Overview"></a>
+<a name="Hardware_Overview"></a>
 ## 2. Hardware Overview  
 
 此無線感測模組為三種電路模組堆疊而成，包括上層感測模組、中層 BLE 無線模組，以及底層電源模組，如下圖所示。  
@@ -45,7 +45,7 @@ sivann 的 BLE Weather Station 模組有光度、壓力、溫度、濕度、聲�
 2. Optional - 可連接 Grove Dust Sensor  
 
 
-<a name="Service & Characteristic UUID"></a>
+<a name="Service_&_Characteristic_UUID"></a>
 ## 4. Service & Characteristic UUID
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
