@@ -4,9 +4,9 @@
 ## Guide Content  
 
 1. [Introduction](#Introduction)  
-2. [Hardware Overview](#Hardware Overview)  
+2. [Hardware Overview](#Hardware_Overview)  
 3. [Usage](#Usage)  
-4. [Service & Characteristic UUID](#Service & Characteristic UUID)  
+4. [Service & Characteristic UUID](#Service_&_Characteristic_UUID)  
 5. [Reference](#Reference)  
 
 
@@ -26,7 +26,7 @@ sivann的 BLE 9-Axis 模組有三軸數位的磁力感測器、三軸數位的�
  * 模組最大工作電流: 16mA  
 
 
-<a name="Hardware Overview"></a>
+<a name="Hardware_Overview"></a>
 ## 2. Hardware Overview  
 
 此無線模組為三種電路左堆疊而成，包括上層感測模組、中層BLE模組以及底層電源模組，如下圖所示。  
@@ -60,7 +60,7 @@ sivann的 BLE 9-Axis 模組有三軸數位的磁力感測器、三軸數位的�
 2. 通電後，綠色LED開始閃爍，模組開始廣播加入網路  
 
 
-<a name="Service & Characteristic UUID"></a>
+<a name="Service_&_Characteristic_UUID"></a>
 ## 4. Service & Characteristic UUID  
 
 |  Service Name        |  Service ID  |  Characteristic ID  |  Description   |  Access Type  |  Note                                    |  
