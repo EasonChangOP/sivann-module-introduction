@@ -4,9 +4,9 @@
 ## Guide Content  
 
 1. [Introduction](#Introduction)  
-2. [Hardware Overview](#Hardware Overview)  
+2. [Hardware Overview](#Hardware_Overview)  
 3. [Usage](#Usage)  
-4. [Service & Characteristic UUID](#Service & Characteristic UUID)  
+4. [Service & Characteristic UUID](#Service_&_Characteristic_UUID)  
 5. [Reference](#Reference)  
 
 
@@ -26,7 +26,7 @@ sivann 的 BLE Remote Control 模組上面有 5 個按鍵，每個按鍵的點�
  * 按鍵點擊前/後電壓（3.3V / 0V）  
 
 
-<a name="Hardware Overview"></a>
+<a name="Hardware_Overview"></a>
 ## 2. Hardware Overview  
 
 此無線模組為三種模組堆疊而成，包括上層感測模組、中層 BLE 模組以及底層電源模組，如下圖所示。  
@@ -43,7 +43,7 @@ sivann 的 BLE Remote Control 模組上面有 5 個按鍵，每個按鍵的點�
 2. 點擊任意按鍵，綠色 LED 開始閃爍，模組發出 BLE 廣播加入網路  
 
 
-<a name="Service & Characteristic UUID"></a>
+<a name="Service_&_Characteristic_UUID"></a>
 ## 4. Service & Characteristic UUID  
 
 下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
