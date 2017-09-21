@@ -29,26 +29,12 @@ sivann的 BLE 9-Axis 模組有三軸數位的磁力感測器、三軸數位的�
 <a name="Hardware_Overview"></a>
 ## 2. Hardware Overview  
 
-此無線模組為三種電路左堆疊而成，包括上層感測模組、中層BLE模組以及底層電源模組，如下圖所示。  
+此無線模組為三種電路模組堆疊而成，包括上層感測模組、中層BLE模組以及底層電源模組，如下圖所示。  
 
 ![9-Axis](http://i.imgur.com/Bqg16jLl.png "9-Axis")  
 
 ### Pinouts  
 ![9-Axis Top](http://i.imgur.com/Zw3pVH6m.png "9-Axis Top")  
-
-* Power Pins  
-  * VDD(3.3V) – 供電給 MAG3110FCR1 及 LSM6DS3  
-  * VCC(3.3V) – 供電給 MAG3110FCR1 及 LSM6DS3  
-  * GND – VDD 及 VCC 共同的地  
-* I2C Pins  
-  * SDA  - I2C 的資料腳位  
-  * SCL  - I2C 的時脈腳位  
-* M_INT  
-  MAG3110FCR1 的中斷，當資料準備時設為 High  
-* AG_INT1  
-  LSM6DS3 的中斷1，發生中斷的情況設定請參閱 Reference 的 LSM6DS3  
-* AG_INT2    
-  LSM6DS3 的中斷2，發生中斷的情況設定請參閱 Reference 的 LSM6DS3  
 
 
 <a name="Usage"></a>
