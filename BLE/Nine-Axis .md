@@ -45,6 +45,8 @@ sivann的 BLE Nine-Axis 模組有三軸數位的磁力感測器、三軸數位�
 <a name="Service_&_Characteristic_UUID"></a>
 ## 4. Service & Characteristic UUID  
 
+下表為此模組的 Service 跟 Characteristic 的介紹，之後的 Characteristic 簡稱為 Char.。  
+
 |  Service Name   |  Service ID  |  Char. Name       |  Char. ID  |  Possible Fields in Char. Value                                                                   |  Access Type  |  Unit  |  Description                                   |  
 |-----------------|--------------|-------------------|------------|---------------------------------------------------------------------------------------------------|---------------|--------|------------------------------------------------|  
 |  **Nine-Axis**  |   0xBB20     |  Gyrometer        |  0xCC24    |  id (uint8), flags (uint8), xValue (float), yValue (float), zValue (float), units (string)        |  R            |  dps   |                                                |  
