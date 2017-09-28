@@ -14,7 +14,7 @@
 <a name="Introduction"></a>
 ## 1. Introduction  
 
-sivann 的 BLE PIR 人體紅外線感測器模組，可以透過低功號藍牙 BLE 無線方式接收感測器訊號。電流感測器 (ACS712ELCTR-05B-T) 的詳細資料請參閱 Reference 的連結。  
+sivann 的 BLE PIR 人體紅外線感測器模組，可以透過低功號藍牙 BLE 無線方式接收感測器訊號。  
 
 #### Features  
  * 偵測人體紅外線  
@@ -31,15 +31,13 @@ sivann 的 BLE PIR 人體紅外線感測器模組，可以透過低功號藍牙 
 
 此無線感測模組為兩種電路模組加上 PIR 感測器堆疊而成，有 BLE 無線模組，以及底層電源模組，如下圖所示。  
 
-![PIR](http://i.imgur.com/HtcpIQ0.png "PIR")  
+![PIR](https://i.imgur.com/fb83A8h.png "PIR")  
 
 
 <a name="Usage"></a>
 ## 3. Usage  
 
 1. 連接 Micro USB 以 5V 電源供應  
-
-![PIR](http://i.imgur.com/lJygRXB.png "PIR")  
 
 
 <a name="Service_&_Characteristic_UUID"></a>
@@ -58,5 +56,5 @@ sivann 的 BLE PIR 人體紅外線感測器模組，可以透過低功號藍牙 
 <a name="Reference"></a>
 ## 5. Reference  
 
- * [Sample Code(ble-shepherd)](https://github.com/sivann-tw/hiver-iot-kit-ble/blob/master/example/powerMeterRelay.js "PIR Sample Code")  
- * [Plugin (ble-shepherd)](https://github.com/bluetoother/bshep-plugin-sivann-relay/blob/master/index.js "PIR Plugin")  
+ * [Sample Code(ble-shepherd)](https://github.com/sivann-tw/hiver-iot-kit-ble/blob/master/example/pir.js "PIR Sample Code")  
+ * [Plugin (ble-shepherd)](https://github.com/bluetoother/bshep-plugin-sivann-pir/blob/master/index.js "PIR Plugin")  
