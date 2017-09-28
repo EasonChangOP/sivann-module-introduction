@@ -22,7 +22,7 @@ sivann 的 BLE PIR 人體紅外線感測器模組，可以透過低功號藍牙 
  * 資料格式符合 [BIPSO](https://github.com/bluetoother/bipso/wiki/BIPSO-Specification "BIPSO") 規範  
 
 #### Spec  
- * 模組工作電壓：5V  
+ * PIR 模組工作電壓：5V  
  * PIR 模組 OUT 腳位電壓輸出：3.3V / 0V  
 
 
